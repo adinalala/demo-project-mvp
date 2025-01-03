@@ -1,23 +1,26 @@
-# Use the Node.js base image
-FROM node:18-alpine
+# Use the official Node.js image as a base image
+FROM node:18
 
-# Set the working directory
+# Set working directory inside the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json
+# Install dependencies
 COPY package.json package-lock.json ./
-
-# Install dependencies using npm
 RUN npm install
 
-# Copy the rest of the application
+# Copy all project files to the container
 COPY . .
 
 # Build the Next.js app
 RUN npm run build
 
-# Expose the default Next.js port
-EXPOSE 3000
+# Expose the port that Cloud Run expects (this should be dynamic)
+EXPOSE 8080
 
-# Start the Next.js app
+ENV PORT 3000
+
+# Log the port to verify it's correct
+RUN echo "Running Next.js on port $PORT"
+
+# Command to run the app (make sure it starts and listens on PORT)
 CMD ["npm", "start"]
