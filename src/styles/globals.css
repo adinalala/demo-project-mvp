@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  html {
+    @apply h-full max-h-full w-full max-w-full;
+    font-size: 14px;
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 1560px) {
+    html {
+      font-size: min(14px, 100vw * 18 / 1440);
+    }
+    @media (min-aspect-ratio: 7 / 4) {
+      html {
+        font-size: min(14px, ((100vw * 18) / 1440 + ((2 / 3) * 100vh * 18) / 375) / 3);
+      }
+    }
+  }
+
+  body {
+    @apply h-full max-h-full w-full max-w-full overflow-hidden bg-background text-foreground;
+    font-feature-settings:
+            'rlig' 1,
+            'calt' 1;
+  }
+}

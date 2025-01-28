@@ -19,7 +19,12 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@app/assets/*": ["public/*"],
+      "@app/*": ["./src/*"],
+      "@app/user/*": ["./src/app/features/user/*"],
+      "@app/auth/*": ["./src/app/features/auth/*"],
+      "@app/utils/*": ["./src/utils/*"],
+      "@app/router/*": ["./src/app/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
